@@ -1,0 +1,51 @@
+name: Testes do Frontend
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  test-frontend:
+    name: Executar testes do Frontend (Cypress)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout do repositório
+        uses: actions/checkout@v4
+
+      - name: 🟢 Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: 📦 Instalar dependências raiz (Cypress)
+        run: npm install
+
+      - name: 📦 Instalar dependências do Backend
+        run: cd backend && npm install
+
+      - name: 🚀 Iniciar o Backend (servidor Express)
+        run: cd backend && node server.js &
+        env:
+          PORT: 3001
+
+      - name: 🌐 Iniciar o Frontend (servidor estático)
+        run: npx serve frontend -p 5500 &
+
+      - name: ⏳ Aguardar serviços ficarem disponíveis
+        run: |
+          npx wait-on http://localhost:3001/tasks --timeout 30000
+          npx wait-on http://localhost:5500 --timeout 30000
+
+      - name: 🧪 Executar testes do Frontend com Cypress
+        run: npm run test:frontend
+
+      - name: 📸 Upload de screenshots em caso de falha
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: cypress-screenshots-frontend
+          path: cypress/screenshots

@@ -1,0 +1,16 @@
+{
+  "name": "todo-app",
+  "version": "1.0.0",
+  "description": "Aplicação To-Do List - Trabalho Final ADS UNIFOR",
+  "scripts": {
+    "install:all": "npm install && cd backend && npm install",
+    "start:backend": "cd backend && node server.js",
+    "test:frontend": "cypress run --spec 'cypress/e2e/frontend.cy.js'",
+    "test:backend": "cypress run --spec 'cypress/e2e/backend.cy.js'",
+    "test:all": "cypress run",
+    "cypress:open": "cypress open"
+  },
+  "devDependencies": {
+    "cypress": "^13.6.0"
+  }
+}

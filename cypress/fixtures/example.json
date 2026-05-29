@@ -1,0 +1,10 @@
+{
+  "sampleTask": {
+    "title": "Tarefa de exemplo"
+  },
+  "tasks": [
+    { "title": "Estudar JavaScript" },
+    { "title": "Fazer exercícios" },
+    { "title": "Ler documentação do Cypress" }
+  ]
+}
