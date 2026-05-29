@@ -1,4 +1,4 @@
-# ✅ To-Do List — Trabalho Final ADS UNIFOR
+# ✅ To-Do List — Trabalho Final Ambiente de Desenvolvimento de Software
 
 Aplicação web completa de gerenciamento de tarefas desenvolvida para a disciplina **Ambientes de Desenvolvimento de Softwares** da **UNIFOR**.
 
